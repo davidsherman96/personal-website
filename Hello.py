@@ -16,21 +16,21 @@ st.markdown("""Passionate data analyst and scientist with a robust foundation in
             such as e-commerce, consulting, and healthcare, enriches my ability to extract meaningful value from data.""")
 st.divider()
 
-col1, col2, col3 = st.columns(3, gap="medium")
+col1, col2, col3, col4 = st.columns(4, gap="medium")
 
 # Function to center subheaders
-def centered_subheader(subheader_text):
+def centered_subheader(subheader_text, font_size=18):
     st.markdown(f"<h3 style='text-align: center;'>{subheader_text}</h3>", unsafe_allow_html=True)
 
 with col1:
-    centered_subheader("Coding Languages")
+    centered_subheader("Coding Languages", font_size=12)
     st.write('''
-            - SQL (SQL Server, PostgreSQL, Redshift, Snowflake)
+            - SQL
             - Python
             - R
             ''')
 with col2:    
-    centered_subheader("Data Visualization Applications")
+    centered_subheader("Data Visualization Applications", font_size=12)
     st.write('''
             - Tableau
             - Power BI
@@ -39,7 +39,7 @@ with col2:
             - ThoughtSpot
             ''')
 with col3:    
-    centered_subheader("Python Libraries")
+    centered_subheader("Python Libraries", font_size=12)
     st.markdown("Data Processing and Modeling")
     st.write('''
             - Pandas
@@ -71,3 +71,26 @@ with col3:
                 - Re
                 - SpaCy
                 ''')
+with col4:
+    centered_subheader("Other Skills", font_size=12)
+    st.write('''
+            - Advanced Excel
+            - Power Automate
+            - API Calls
+            - Middleware
+            - Salesforce
+            - SEM
+            - SEO
+             ''')
+
+# Apply CSS to adjust layout
+st.markdown(
+    """
+    <style>
+    .streamlit-container .row-widget > div {
+        flex: 1;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)            
