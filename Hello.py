@@ -57,20 +57,19 @@ with col3:
             - Plotly
             - Seaborn
             ''')
-    with st.expander("Miscellaneous"):
-        #st.markdown("Miscellaneous")
-        st.write('''
-                - Psycopg2
-                - Gmaps
-                - Neo4j
-                - Statsmodels.api
-                - Requests
-                - Transformers
-                - Gensim
-                - NLTK
-                - Re
-                - SpaCy
-                ''')
+    st.markdown("Miscellaneous")
+    st.write('''
+            - Psycopg2
+            - Gmaps
+            - Neo4j
+            - Statsmodels.api
+            - Requests
+            - Transformers
+            - Gensim
+            - NLTK
+            - Re
+            - SpaCy
+             ''')
 with col4:
     centered_subheader("Other Skills", font_size=12)
     st.write('''
