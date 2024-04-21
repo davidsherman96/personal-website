@@ -83,14 +83,4 @@ with col4:
             - SEO
              ''')
 
-# Apply CSS to adjust layout
-st.markdown(
-    """
-    <style>
-    .streamlit-container .row-widget > div {
-        flex: 1;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)            
+     
