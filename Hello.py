@@ -6,6 +6,24 @@ import time
 
 
 st.title("Welcome to David Sherman's website!")
+
+# LinkedIn profile
+image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/2048px-LinkedIn_icon.svg.png" 
+hyperlink_url = "https://www.linkedin.com/in/david-j-sherman/"  
+image_width = 50
+# st.markdown(f"<a href='{hyperlink_url}' target='_blank'><img src='{image_url}' alt='Clickable Image' width='{image_width}'></a>", unsafe_allow_html=True)
+st.markdown(
+    f"""
+    <div style="text-align: right;">
+        <a href="{hyperlink_url}" target="_blank">
+            <img src="{image_url}" alt="Clickable Image" width="{image_width}" style="float: right;">
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
 st.divider()
 st.subheader("About me:")
 st.markdown("""Passionate data analyst and scientist with a robust foundation in data manipulation, 
@@ -83,3 +101,4 @@ with col4:
              ''')
 
      
+
