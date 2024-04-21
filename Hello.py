@@ -1,51 +1,73 @@
-# Copyright (c) Streamlit Inc. (2018-2022) Snowflake Inc. (2022)
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
+import altair as alt
+import numpy as np
+import pandas as pd
 import streamlit as st
-from streamlit.logger import get_logger
-
-LOGGER = get_logger(__name__)
+import time
 
 
-def run():
-    st.set_page_config(
-        page_title="Hello",
-        page_icon="👋",
-    )
+st.title("Welcome to David Sherman's personal website!")
+st.divider()
+st.subheader("About me:")
+st.markdown("""Passionate data analyst and scientist with a robust foundation in data manipulation, 
+            analysis, visualization, and interpretation. Equipped with a Master's in Data Science from UC Berkeley's School of Information, 
+            I bring a dynamic skill set honed through hands-on experience. Proficient in writing SQL and Python code and adept at leveraging 
+            advanced analytics tools like Tableau and PowerBI, I excel in transforming complex datasets into actionable insights. My diverse 
+            background in client service and vendor management across industries, 
+            such as e-commerce, consulting, and healthcare, enriches my ability to extract meaningful value from data.""")
+st.divider()
 
-    st.write("# Welcome to Streamlit! 👋")
+col1, col2, col3 = st.columns(3, gap="medium")
 
-    st.sidebar.success("Select a demo above.")
+# Function to center subheaders
+def centered_subheader(subheader_text):
+    st.markdown(f"<h3 style='text-align: center;'>{subheader_text}</h3>", unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-    """
-    )
-
-
-if __name__ == "__main__":
-    run()
+with col1:
+    centered_subheader("Coding Languages")
+    st.write('''
+            - SQL (SQL Server, PostgreSQL, Redshift, Snowflake)
+            - Python
+            - R
+            ''')
+with col2:    
+    centered_subheader("Data Visualization Applications")
+    st.write('''
+            - Tableau
+            - Power BI
+            - Looker
+            - Adobe Analytics
+            - ThoughtSpot
+            ''')
+with col3:    
+    centered_subheader("Python Libraries")
+    st.markdown("Data Processing and Modeling")
+    st.write('''
+            - Pandas
+            - NumPy
+            - SciPy
+            - Keras
+            - SciKit-Learn
+            - PyTorch
+            - TensorFlow
+            - XGBoost
+            ''')
+    st.markdown("Data Visualization")
+    st.write('''
+            - Matplotlib
+            - Plotly
+            - Seaborn
+            ''')
+    with st.expander("Miscellaneous"):
+        #st.markdown("Miscellaneous")
+        st.write('''
+                - Psycopg2
+                - Gmaps
+                - Neo4j
+                - Statsmodels.api
+                - Requests
+                - Transformers
+                - Gensim
+                - NLTK
+                - Re
+                - SpaCy
+                ''')
