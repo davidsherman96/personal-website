@@ -5,7 +5,7 @@ import streamlit as st
 import time
 
 
-st.title("Welcome to David Sherman's personal website!")
+st.title("Welcome to David Sherman's website!")
 st.divider()
 st.subheader("About me:")
 st.markdown("""Passionate data analyst and scientist with a robust foundation in data manipulation, 

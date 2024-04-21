@@ -4,4 +4,4 @@ import pandas as pd
 import streamlit as st
 import time
 
-st.write('test')
+st.title("UC Berkeley Master's in Data Science")
