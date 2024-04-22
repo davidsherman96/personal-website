@@ -4,14 +4,13 @@ import pandas as pd
 import streamlit as st
 import time
 
-
+# Main title
 st.title("Welcome to David Sherman's website!")
 
 # LinkedIn profile
 image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/2048px-LinkedIn_icon.svg.png" 
 hyperlink_url = "https://www.linkedin.com/in/david-j-sherman/"  
 image_width = 50
-# st.markdown(f"<a href='{hyperlink_url}' target='_blank'><img src='{image_url}' alt='Clickable Image' width='{image_width}'></a>", unsafe_allow_html=True)
 st.markdown(
     f"""
     <div style="text-align: right;">
@@ -23,7 +22,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
+# About me section
 st.divider()
 st.subheader("About me:")
 st.markdown("""Passionate data analyst and scientist with a robust foundation in data manipulation, 
@@ -40,6 +39,7 @@ col1, col2, col3, col4 = st.columns(4, gap="medium")
 def centered_subheader(subheader_text, font_size=18):
     st.markdown(f"<h3 style='text-align: center;'>{subheader_text}</h3>", unsafe_allow_html=True)
 
+# Create columns with details about me
 with col1:
     centered_subheader("Coding Languages", font_size=12)
     st.write('''
@@ -101,4 +101,3 @@ with col4:
              ''')
 
      
-
