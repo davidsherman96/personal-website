@@ -17,29 +17,34 @@ st.markdown("""
             Feel free to use the following tabs to get a better understanding of the scope of each course along with corresponding projects and assignments I completed.
             """)
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["Intro to Coding", "Research Design", 
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["Intro to Python", "Research Design", 
                             "Statistics","Data Engineering",
                             "Machine Learning","Data Visualization",
                             "Behind the Data","Natural Language Processing",
                             "Capstone"])
 
+# Function to center subheaders
+def centered_subheader(subheader_text, font_size=18):
+    st.markdown(f"<h3 style='text-align: center;'>{subheader_text}</h3>", unsafe_allow_html=True)
+
 with tab1:
-   st.header("Introduction to Python Programmnig")
+   centered_subheader("Introduction to Python Programmnig")
+   st.markdown("**Class Description:** An introduction to computer programming, using Python, tailored to the needs of data scientists.")
 with tab2:
-   st.header("Research Design and Applications for Data and Analysis")
+   centered_subheader("Research Design and Applications for Data and Analysis")
 with tab3:
-   st.header("Statistics for Data Science")
+   centered_subheader("Statistics for Data Science")
 with tab4:
-   st.header("Data Engineering")
+   centered_subheader("Data Engineering")
 with tab5:
-   st.header("Machine Learning")
+   centered_subheader("Machine Learning")
 with tab6:
-   st.header("Data Visualization")
+   centered_subheader("Data Visualization")
 with tab7:
-   st.header("Behind the Data: Humans and Values")
+   centered_subheader("Behind the Data: Humans and Values")
 with tab8:
-   st.header("Natural Language Processing")
-with tab8:
-   st.header("Capstone")   
+   centered_subheader("Natural Language Processing")
+with tab9:
+   centered_subheader("Capstone")   
 
    

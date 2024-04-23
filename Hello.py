@@ -48,7 +48,7 @@ with col1:
             - R
             ''')
 with col2:    
-    centered_subheader("Data Visualization Applications", font_size=12)
+    centered_subheader("Data Viz Tools", font_size=12)
     st.write('''
             - Tableau
             - Power BI
