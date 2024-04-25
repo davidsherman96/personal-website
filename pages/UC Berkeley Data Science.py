@@ -30,6 +30,17 @@ def centered_subheader(subheader_text, font_size=18):
 with tab1:
    centered_subheader("Introduction to Python Programmnig")
    st.markdown("**Class Description:** An introduction to computer programming, using Python, tailored to the needs of data scientists.")
+   st.markdown("**Key Libraries:** Pandas, NumPy, Matplotlib")
+   st.divider()
+   st.subheader("**Final Project**")
+   st.markdown("""**Goal:** Conduct an exploratory data 
+               analysis of a dataset of our choosing to answer a research question. """)
+   st.markdown("""**Our Scope:** Using a primary dataset provided by the 
+               National UFO Reporting Center (NUFORC), we sought to address the following questions:""")
+   st.markdown("1. What is the incidence of unidentified aerial phenomena (UAP) over time, and how do they vary geographically?")
+   st.markdown("2. Does the geographical distribution of UAPs correlate with commercial space launch sites, with military base locations, and/or with commercial airport locations?")
+   st.markdown("3. What are the reported shapes of UAPs, and does this vary by year or states?")
+   st.markdown("4. What is the duration of reported UAP events, and has this changed over the years?")
 with tab2:
    centered_subheader("Research Design and Applications for Data and Analysis")
 with tab3:
