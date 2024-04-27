@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import time
+from W200_Calcs import main_heatmap
 
 st.title("UC Berkeley Master's in Data Science")
 
@@ -41,6 +42,22 @@ with tab1:
    st.markdown("2. Does the geographical distribution of UAPs correlate with commercial space launch sites, with military base locations, and/or with commercial airport locations?")
    st.markdown("3. What are the reported shapes of UAPs, and does this vary by year or states?")
    st.markdown("4. What is the duration of reported UAP events, and has this changed over the years?")
+   code = """ # Function to create the heatmap using Seaborn
+def create_heatmap(data):
+    plt.figure(figsize=(12, 10))
+    sns.heatmap(data, annot=True, cmap='YlGnBu', fmt='d')
+    plt.xlabel('Decade')
+    st.pyplot()
+
+# Streamlit app
+def main_heatmap():
+    st.title('NUFORC Events Heatmap by Decades (Top 10 Cities)')
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    # Display the heatmap for the top 10 cities by events
+    create_heatmap(final_heatmap_cities_decades_top_10)
+    """
+   st.code(code, language="python")
+   main_heatmap()
 with tab2:
    centered_subheader("Research Design and Applications for Data and Analysis")
 with tab3:
