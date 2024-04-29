@@ -2,8 +2,9 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
+import os
 import time
-from W200_Calcs import main_heatmap
+from W200_Calcs import main_heatmap, main_bar_chart
 
 st.title("UC Berkeley Master's in Data Science")
 
@@ -29,35 +30,58 @@ def centered_subheader(subheader_text, font_size=18):
     st.markdown(f"<h3 style='text-align: center;'>{subheader_text}</h3>", unsafe_allow_html=True)
 
 with tab1:
-   centered_subheader("Introduction to Python Programmnig")
+   centered_subheader("Introduction to Python Programming")
    st.markdown("**Class Description:** An introduction to computer programming, using Python, tailored to the needs of data scientists.")
-   st.markdown("**Key Libraries:** Pandas, NumPy, Matplotlib")
+   st.markdown("**Key Libraries:** Pandas, NumPy, Matplotlib, Seaborn")
    st.divider()
    st.subheader("**Final Project**")
    st.markdown("""**Goal:** Conduct an exploratory data 
                analysis of a dataset of our choosing to answer a research question. """)
    st.markdown("""**Our Scope:** Using a primary dataset provided by the 
-               National UFO Reporting Center (NUFORC), we sought to address the following questions:""")
+               National UFO Reporting Center (NUFORC), we sought to address various questions, including:""")
    st.markdown("1. What is the incidence of unidentified aerial phenomena (UAP) over time, and how do they vary geographically?")
-   st.markdown("2. Does the geographical distribution of UAPs correlate with commercial space launch sites, with military base locations, and/or with commercial airport locations?")
-   st.markdown("3. What are the reported shapes of UAPs, and does this vary by year or states?")
-   st.markdown("4. What is the duration of reported UAP events, and has this changed over the years?")
-   code = """ # Function to create the heatmap using Seaborn
+   st.markdown("2. What times are most UAPs reported?")
+
+
+   heatmap_code = """ # Function to create the heatmap using Seaborn
 def create_heatmap(data):
     plt.figure(figsize=(12, 10))
     sns.heatmap(data, annot=True, cmap='YlGnBu', fmt='d')
     plt.xlabel('Decade')
     st.pyplot()
 
-# Streamlit app
+# Display the heatmap for the top 10 cities by events
 def main_heatmap():
-    st.title('NUFORC Events Heatmap by Decades (Top 10 Cities)')
-    st.set_option('deprecation.showPyplotGlobalUse', False)
-    # Display the heatmap for the top 10 cities by events
     create_heatmap(final_heatmap_cities_decades_top_10)
     """
-   st.code(code, language="python")
+   
+   barchart_code = """#Seaborn bar chart for top 10 reported NUFORC event times
+def create_bar_chart(data):
+    plt.figure(figsize=(12,8))
+    custom_palette = sns.color_palette("flare", len(data)).as_hex()[::-1]
+    ax = sns.barplot(x='Time', y='Count', data=data, palette=custom_palette)
+    plt.xticks(rotation='horizontal')
+    st.pyplot()
+
+# Display the bar chart
+def main_bar_chart():
+    create_bar_chart(time_full)
+    """
+   
+   st.warning("""See below for a sample of our work. To view the entire code notebook, 
+              project write-up, and presentation, feel free to view our GitHub repository [here](https://github.com/davidsherman96/berkeley_data_science_w200_intro_python_programming/tree/main)
+              """)
+
+   centered_subheader("<u>NUFORC Events Heatmap by Decades (Top 10 Cities)</u>")
    main_heatmap()
+   with st.expander("See Heatmap Code:"):
+      st.code(heatmap_code, language="python")
+
+   centered_subheader("<u>Top 10 Times By Total Reported Events</u>")
+   main_bar_chart()   
+   with st.expander("See Bar Chart Code:"):
+      st.code(barchart_code, language="python")
+
 with tab2:
    centered_subheader("Research Design and Applications for Data and Analysis")
 with tab3:

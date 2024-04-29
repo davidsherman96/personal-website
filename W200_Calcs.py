@@ -4,11 +4,13 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
+#Creating the dataframes for EDA
 nuforc_events_clean = pd.read_csv('nuforc_events_clean.csv', index_col=0)
 airports_clean = pd.read_csv('airports_clean.csv')
 military_bases_clean = pd.read_csv('MilitaryBases_clean.csv')
 space_launch_data_clean = pd.read_csv('space_launch_data_clean.csv')
 
+#Section 1 - Creating heatmap for NUFORC events by city over time
 
 nuforc_events_clean['Date_Clean'] = pd.to_datetime(nuforc_events_clean['Date'])
 nuforc_events_clean['Year'] = nuforc_events_clean['Date_Clean'].dt.year
@@ -66,16 +68,65 @@ final_heatmap_cities_decades_top_10.drop(['Sum_Events'], axis=1, inplace=True)
  # Function to create the heatmap using Seaborn
 def create_heatmap(data):
     plt.figure(figsize=(12, 10))
-    sns.heatmap(data, annot=True, cmap='YlGnBu', fmt='d')
+    sns.heatmap(data, annot=True, cmap='flare', fmt='d')
     plt.xlabel('Decade')
     st.pyplot()
 
-# Streamlit app
+# Display the heatmap
 def main_heatmap():
-    st.title('NUFORC Events Heatmap by Decades (Top 10 Cities)')
     st.set_option('deprecation.showPyplotGlobalUse', False)
-    # Display the heatmap for the top 10 cities by events
     create_heatmap(final_heatmap_cities_decades_top_10)
 
-# if __name__ == "__main__":
-#     main()
+#############################################
+#Section 2 - Creating bar chart of counts of NUFORC events by hour
+
+#Creating new dataframe, filtering out rows that have NaNs for hour and minute fields
+time_fix = nuforc_events_clean.dropna(subset=['Hour','Minute'])
+
+#Converting hours and minutes to ints
+time_fix['Hour'] = time_fix['Hour'].astype(int)
+time_fix['Minute'] = time_fix['Minute'].astype(int)
+
+#Creating function that will allocate an A.M. or P.M. value based on the army time ('Hour' field) given in the NUFORC data 
+def am_pm(value):
+    if value >= 0 and value <= 12:
+        return 'A.M.'   
+    else:
+        return 'P.M.'
+
+
+#Apply AM_PM function to create a new column    
+time_fix['AM_PM'] = time_fix['Hour'].map(am_pm)
+
+
+#Create hour dictionary to convert army time to standard time equivalent, then apply dictionary replacement function
+hour_dict = {0:12, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9, 10:10, 11:11,
+            12:12, 13:1, 14:2, 15:3, 16:4, 17:5, 18:6, 19:7, 20:8, 21:9, 22:10, 23:11}
+
+time_fix['Hour'] = time_fix['Hour'].replace(hour_dict)
+
+#Create minute dictionary to account for single digit minutes, then apply dictionary replacement function
+minute_dict = {0:'00', 1:'01', 2:'02', 3:'03', 4:'04', 5:'05', 6:'06', 7:'07', 8:'08', 9:'09'}
+
+time_fix['Minute'] = time_fix['Minute'].replace(minute_dict)
+
+#New column with the cleaned up time field
+time_fix['Full_Time'] = time_fix['Hour'].astype(str) + ':' + time_fix['Minute'].astype(str) + ' ' + time_fix['AM_PM']
+
+#New dataframe for 10 most popular times of day by event count
+time_full = time_fix['Full_Time'].value_counts().reset_index().head(10)
+time_full.columns = ['Time','Count']
+
+#Seaborn bar chart for top 10 reported NUFORC event times
+def create_bar_chart(data):
+    plt.figure(figsize=(12,8))
+    custom_palette = sns.color_palette("flare", len(data)).as_hex()[::-1]
+    ax = sns.barplot(x='Time', y='Count', data=data, palette=custom_palette)
+    plt.xticks(rotation='horizontal')
+    # plt.title('Top 10 Times By Total Reported Events')
+    st.pyplot()
+
+# Display the bar chart
+def main_bar_chart():
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    create_bar_chart(time_full)
